@@ -13,6 +13,12 @@
 // Подивись демовідео роботи застосунку на цьому етапі.
 //У розмітці необхідно буде обгорнути кожну картку зображення в посилання, як зазначено в документації в секції «Markup».
 //Бібліотека містить метод [refresh()](<https://github.com/andreknieriem/simplelightbox#public-methods>), який обов'язково потрібно викликати щоразу після додавання нових елементів до галереї.
+import SimpleLightbox from "simplelightbox";
+// Додатковий імпорт стилів
+import "simplelightbox/dist/simple-lightbox.min.css";
+import iziToast from "izitoast";
+// Додатковий імпорт стилів
+import "izitoast/dist/css/iziToast.min.css";
 const images = [
     {
       preview:
@@ -96,4 +102,4 @@ const images = [
  galleryContainer.insertAdjacentHTML("afterbegin", createMarkup(images));
 
 
-var lightbox = new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: 'alt'  });
+let lightbox = new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: 'alt'  });
