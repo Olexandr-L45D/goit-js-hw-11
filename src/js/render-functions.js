@@ -103,4 +103,4 @@ const images = [
  galleryRender.insertAdjacentHTML("afterbegin", createMarkup(images));
 
 
-var lightbox = new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: 'alt'  });
+//var lightbox = new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: 'alt'  });
