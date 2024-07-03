@@ -9,15 +9,16 @@
 // comments — кількість коментарів
 // downloads — кількість завантажень
 // Перед пошуком за новим ключовим словом необхідно повністю очищати вміст галереї, щоб не змішувати результати запитів.
-
+//Якщо бекенд повертає порожній масив, значить, нічого підходящого не було знайдено.
+//  У такому разі показуй повідомлення з текстом
+//  "Sorry, there are no images matching your search query. Please try again!".
+ //Для повідомлень використовуй бібліотеку iziToast
 // Подивись демовідео роботи застосунку на цьому етапі.
 //У розмітці необхідно буде обгорнути кожну картку зображення в посилання, як зазначено в документації в секції «Markup».
 //Бібліотека містить метод [refresh()](<https://github.com/andreknieriem/simplelightbox#public-methods>), який обов'язково потрібно викликати щоразу після додавання нових елементів до галереї.
 import SimpleLightbox from "simplelightbox";
-// Додатковий імпорт стилів
 import "simplelightbox/dist/simple-lightbox.min.css";
 import iziToast from "izitoast";
-// Додатковий імпорт стилів
 import "izitoast/dist/css/iziToast.min.css";
 const images = [
     {
@@ -85,7 +86,7 @@ const images = [
     },
   ];
 
-  const galleryContainer = document.querySelector('.gallery');
+  const galleryRender = document.querySelector('.gallery');
   
   function createMarkup(images) {
     return images.map(image => `
@@ -99,7 +100,7 @@ const images = [
   </a>
 </li> `).join("");
  };
- galleryContainer.insertAdjacentHTML("afterbegin", createMarkup(images));
+ galleryRender.insertAdjacentHTML("afterbegin", createMarkup(images));
 
 
-let lightbox = new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: 'alt'  });
+var lightbox = new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: 'alt'  });
