@@ -1,6 +1,6 @@
 // //2 task
 // Кожне зображення описується об'єктом, з якого тобі цікаві тільки такі властивості:
-
+//add html:
 // webformatURL — посилання на маленьке зображення для списку карток у галереї
 // largeImageURL — посилання на велике зображення для модального вікна
 // tags — рядок з описом зображення. Підійде для атрибута alt
@@ -20,88 +20,56 @@ import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
+// // grete obgeckt:
+// <li>webformatURL:
+//       largeImageURL:
+//       alt: tags
+//       views:
+//       comments:
+//       downloads:</li>
+//   </ul> 
 
-// const images = [
-//     {
-//       preview:
-//         'https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820__480.jpg',
-//       original:
-//         'https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820_1280.jpg',
-//       description: 'Hokkaido Flower',
-//     },
-//     {
-//       preview:
-//         'https://cdn.pixabay.com/photo/2019/05/14/22/05/container-4203677__340.jpg',
-//       original:
-//         'https://cdn.pixabay.com/photo/2019/05/14/22/05/container-4203677_1280.jpg',
-//       description: 'Container Haulage Freight',
-//     },
-//     {
-//       preview:
-//         'https://cdn.pixabay.com/photo/2019/05/16/09/47/beach-4206785__340.jpg',
-//       original:
-//         'https://cdn.pixabay.com/photo/2019/05/16/09/47/beach-4206785_1280.jpg',
-//       description: 'Aerial Beach View',
-//     },
-//     {
-//       preview:
-//         'https://cdn.pixabay.com/photo/2016/11/18/16/19/flowers-1835619__340.jpg',
-//       original:
-//         'https://cdn.pixabay.com/photo/2016/11/18/16/19/flowers-1835619_1280.jpg',
-//       description: 'Flower Blooms',
-//     },
-//     {
-//       preview:
-//         'https://cdn.pixabay.com/photo/2018/09/13/10/36/mountains-3674334__340.jpg',
-//       original:
-//         'https://cdn.pixabay.com/photo/2018/09/13/10/36/mountains-3674334_1280.jpg',
-//       description: 'Alpine Mountains',
-//     },
-//     {
-//       preview:
-//         'https://cdn.pixabay.com/photo/2019/05/16/23/04/landscape-4208571__340.jpg',
-//       original:
-//         'https://cdn.pixabay.com/photo/2019/05/16/23/04/landscape-4208571_1280.jpg',
-//       description: 'Mountain Lake Sailing',
-//     },
-//     {
-//       preview:
-//         'https://cdn.pixabay.com/photo/2019/05/17/09/27/the-alps-4209272__340.jpg',
-//       original:
-//         'https://cdn.pixabay.com/photo/2019/05/17/09/27/the-alps-4209272_1280.jpg',
-//       description: 'Alpine Spring Meadows',
-//     },
-//     {
-//       preview:
-//         'https://cdn.pixabay.com/photo/2019/05/16/21/10/landscape-4208255__340.jpg',
-//       original:
-//         'https://cdn.pixabay.com/photo/2019/05/16/21/10/landscape-4208255_1280.jpg',
-//       description: 'Nature Landscape',
-//     },
-//     {
-//       preview:
-//         'https://cdn.pixabay.com/photo/2019/05/17/04/35/lighthouse-4208843__340.jpg',
-//       original:
-//         'https://cdn.pixabay.com/photo/2019/05/17/04/35/lighthouse-4208843_1280.jpg',
-//       description: 'Lighthouse Coast Sea',
-//     },
-//   ];
-
-//   const galleryRender = document.querySelector('.gallery');
+// function updateBookById(update, bookId) {
+//     const options = {
+//       method: "PATCH",
+//       body: JSON.stringify(update),
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     };
   
-//   function createMarkup(images) {
-//     return images.map(image => `
-//     <li class="gallery-item">
-//   <a class="gallery-link" href="${image.original}">
-//     <img
-//       class="gallery-image"
-//       src="${image.preview}"
-//       alt="${image.description}"
-//     />
-//   </a>
-// </li> `).join("");
-//  };
-//  galleryRender.insertAdjacentHTML("afterbegin", createMarkup(images));
+//     return fetch(`${URL}/books/${bookId}`, options).then((res) => {
+//       if (!res.ok) {
+//         throw new Error(res.status);
+//       }
+  
+//       return res.json();
+//     });
+//   }
 
-
-// var lightbox = new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: 'alt'  });
+//     "hits": [ // взяв масив з ресурса pixabay.com/photos
+//         {
+//             "id": 3139127,
+//             "pageURL": "https://pixabay.com/photos/desk-work-business-office-finance-3139127/",
+//             "type": "photo",
+//             "tags": "desk, work, business",
+//             "previewURL": "https://cdn.pixabay.com/photo/2018/02/08/10/22/desk-3139127_150.jpg",
+//             "previewWidth": 150,
+//             "previewHeight": 96,
+//             "webformatURL": "https://pixabay.com/get/g858d18ffa3ce5a0fbc0d51ec79d23bb9775c58227121af54c490c318c4b655aede101bdff693dd695aaa6f604ceb03893eeecd863ceca7b6fc5fbfc08a0f83c4_640.jpg",
+//             "webformatWidth": 640,
+//             "webformatHeight": 412,
+//             "largeImageURL": "https://pixabay.com/get/g9fa0ab20fb3cbe941e1af3dbeb59b54bcd8bc3b1df699b29408e314a712c82264d6b44657c6a6920d1e3b4422d215a288121d36726e82087c6f028d81e705b07_1280.jpg",
+//             "imageWidth": 5983,
+//             "imageHeight": 3853,
+//             "imageSize": 7647330,
+//             "views": 266819,
+//             "downloads": 161646,
+//             "collections": 703,
+//             "likes": 479,
+//             "comments": 57,
+//             "user_id": 4283981,
+//             "user": "rawpixel",
+//             "userImageURL": "https://cdn.pixabay.com/user/2024/03/14/08-35-52-464_250x250.jpg"
+//         },
+// }

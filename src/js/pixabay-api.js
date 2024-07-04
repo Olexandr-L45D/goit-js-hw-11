@@ -11,29 +11,72 @@
 // orientation — орієнтація фотографії. Постав значення horizontal.
 // safesearch — фільтр за віком. Постав значення true.
 
-// import SimpleLightbox from "simplelightbox";
+import SimpleLightbox from "simplelightbox";
 
-// import "simplelightbox/dist/simple-lightbox.min.css";
-// import iziToast from "izitoast";
+import "simplelightbox/dist/simple-lightbox.min.css";
+import iziToast from "izitoast";
 
-// import "izitoast/dist/css/iziToast.min.css";
+import "izitoast/dist/css/iziToast.min.css";
+const hits = {
+  q: "", image_type: "photo" , orientation: "horizontal", safesearch: "true"
+}
+const fetchUserList = document.querySelector(".btn");
 
-// const fetchUserBtn = document.querySelector(".btn");
-function getPictureQvery(qvery) {
-  const API_KEY = "44760113-b733d2f51a4c6409aa3483a05";
-  return fetch(`https://pixabay.com/api?key= ${API_KEY}&q=${qvery}`)
+const creteLiMarkup = ({hits})=>
+`<li class=${hits}></li> `;
+
+const creteLISTMarkup = (liArr)=> liArr.map(creteLiMarkup).json("")
+
+const API_KEY = "44760113-b733d2f51a4c6409aa3483a05";
+ fetch(`https://pixabay.com/api?key= ${API_KEY}&q=hits`)
+
 .then(response => { 
-  console.log(response); // приходить выд серверу в вигл обекта РЕСПОНСresponse
+  console.log(response); // приходить вiд серверу в вигл response
   if (!response.ok) {
-    throw new Error(response.status); // перевырка в разы помилки 404 щоб пропустила в catch
+    throw new Error(response.status); // перев помилки 404 щоб пропустила в catch
   }
   return response.json(); // виклкикаеттся на обект ы повертае ПРОМс
 }
+).then((data) => 
+{
+  console.log(data);
+  const listGretMarkup = creteLISTMarkup(data);
+  fetchUserList.insertAdjacentHTML("beforeend", listGretMarkup);
+})
+.catch((error) => console.error("fech error:", error )
 );
-}
- getPictureQvery("blue+flowers")
-.then((data) => console.log(data))
-.catch((error) => console.error("fech error:", error ));
+
+
+
+// const API_KEY = "44760113-b733d2f51a4c6409aa3483a05";
+// const parameters = {
+//   key : API_KEY,
+//   q : String,
+//   image_type : photo,
+//   orientation : horizontal,
+//   safesearch : true
+// }
+
+// const fetchUserBtn = document.querySelector(".btn");
+
+// function getPictureQvery(parameters) {
+//   // const API_KEY = "44760113-b733d2f51a4c6409aa3483a05";
+//   return fetch(`https://pixabay.com/api?key= ${API_KEY}&q=${parameters}`)
+// .then(response => { 
+//   console.log(response); // приходить выд серверу в вигл обекта РЕСПОНСresponse
+//   if (!response.ok) {
+//     throw new Error(response.status); // перевырка в разы помилки 404 щоб пропустила в catch
+//   }
+//   return response.json(); // виклкикаеттся на обект ы повертае ПРОМс
+// }
+// );
+// }
+// //  getPictureQvery(`q`)
+// getPictureQvery( q, image_type, safesearch )
+// .then((data) => console.log(data))
+// .catch((error) => console.error("fech error:", error ));
+
+
 
 
 
