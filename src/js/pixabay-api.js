@@ -1,9 +1,6 @@
-//1 task
-// export/import:
 
 // У файлі pixabay-api.js зберігай функції для HTTP-запитів.
-// У файлі render-functions.js створи функції для відображення елементів інтерфейсу.
-// У файлі main.js напиши всю логіку роботи додатка.
+
 // Список параметрів рядка запиту, які тобі обов'язково необхідно вказати:
 // key — твій унікальний ключ доступу до API.
 // q — слово для пошуку. Те, що буде вводити користувач.
@@ -12,7 +9,7 @@
 // safesearch — фільтр за віком. Постав значення true.
 
 const hits = {
-  q: "", image_type: "photo" , orientation: "horizontal", safesearch: "true"
+  q: "", image_type: "photo" , orientation: "horizontal", safesearch: true
 }
 
 const API_KEY = "44760113-b733d2f51a4c6409aa3483a05";
@@ -28,4 +25,4 @@ export function getImage() {
     }
     );
     }
-
+// export {getImage};
