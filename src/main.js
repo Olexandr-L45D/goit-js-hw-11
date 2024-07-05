@@ -11,9 +11,9 @@ fechPhoto().then((dat) => console.log(dat))
 import {handlerSearch} from "./js/render-functions"
 handlerSearch().then((dat) => console.log(dat))
 
-import {creatMarGallery} from "./js/render-functions"
-creatMarGallery().then((dat) => console.log(dat))
+// import {creatMarGallery} from "./js/render-functions"
+// creatMarGallery().then((dat) => console.log(dat))
 
 
-import {handlerSabmit} from "./js/render-functions"
-handlerSabmit().then((event) => console.log(event))
+// import {handlerSabmit} from "./js/render-functions"
+// handlerSabmit().then((event) => console.log(event))
