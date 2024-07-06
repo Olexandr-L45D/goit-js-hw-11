@@ -1,13 +1,6 @@
 
 // У файлі pixabay-api.js зберігай функції для HTTP-запитів.
 
-// Список параметрів рядка запиту, які тобі обов'язково необхідно вказати:
-// key — твій унікальний ключ доступу до API.
-// q — слово для пошуку. Те, що буде вводити користувач.
-// image_type — тип зображення. Потрібні тільки фотографії, тому постав значення photo.
-// orientation — орієнтація фотографії. Постав значення horizontal.
-// safesearch — фільтр за віком. Постав значення true.
-
 const hits = {
   q: "", image_type: "photo" , orientation: "horizontal", safesearch: true
 }
@@ -17,12 +10,12 @@ const API_KEY = "44760113-b733d2f51a4c6409aa3483a05";
 
 export function getImage() {
   return fetch(`https://pixabay.com/api/?key=${API_KEY}&hits=q`).then(response => { 
-      console.log(response); // приходить выд серверу в вигл обекта РЕСПОНСresponse
+      console.log(response); // приходить вiд серверу в вигл обекта РЕСПОНС - response
       if (!response.ok) {
-        throw new Error(response.status); // перевырка в разы помилки 404 щоб пропустила в catch
+        throw new Error(response.status); // перевiрка в разi помилки 404 щоб пропустила в catch
       }
-      return response.json(); // виклкикаеттся на обект ы повертае ПРОМiс
+      return response.json(); // виклкикаеттся на обект i повертае promis
     }
     );
     }
-// export {getImage};
+
