@@ -6,30 +6,12 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
-function newUrl(str) {
-    const BaSe_URL ="https://pixabay.com/api/";
-    const Me_KEY = "44760113-b733d2f51a4c6409aa3483a05";
-    const imageType = 'photo';
-    const orientat = "horizontal";
-    const safesearch = true;
-    const urlRaqeuestes = `${BaSe_URL}?key=${Me_KEY}&q=${str}&image_type${imageType}&orientation=${orientat}&safesearch=${safesearch}`
-    return fetch(urlRaqeuestes).then(response => { 
-        console.log(response); 
-        if (!response.ok) {
-          throw new Error(response.status); 
-        }
-        return response.json(); // виклкикається на обєкт і повертае Promis
-      }
-      );}
-
-    export {newUrl};
-
 const hits = {
     q: "", image_type: "photo" , orientation: "horizontal", safesearch: true, name: ""
    } 
-  
+   const API_KEY = "44760113-b733d2f51a4c6409aa3483a05";
 function fechPhoto(hits) {
-    return fetch(`https://pixabay.com/api/?key=${newUrl.Me_KEY}&${newUrl.q}`).then(response => { 
+    return fetch(`https://pixabay.com/api/?key=${API_KEY}&${hits.q}`).then(response => { 
         console.log(response); 
         if (!response.ok) {
           throw new Error(response.status); 
@@ -44,10 +26,10 @@ export {fechPhoto};
 //  this.initialSelector = elements;
 
 const formSearchImage = document.querySelector('.uzers-form-image');
-formSearchImage.addEventListener('submit', handlerSearch);
+// formSearchImage.addEventListener('submit', handlerSearch);
 
 function handlerSearch(event) {
-       event.preventDefault();
+      //  event.preventDefault();
        const form = event.currentTarget; // посилання на елемент форми
        const photQueryValue = form.elements.query.value.toLowerCase(); //значення яке написав користувач
 
@@ -75,22 +57,22 @@ const galleryContainer = document.querySelector('.gallery');
    function creatMarGallery({views, downloads, likes, comments, webformatURL, tags, largeImageURL, hits}) 
   {
     const hitsList = hits
-    .map(({image}) =>  `<li class="list-group-new">${image.name}</li>` )
-      .join("");
-      const markupHtml = ` 
+    .map(({image}) =>  
+      ` <div class="gallery">"${hitsList}"
     <li class="gallery-item">
     <p>${image.views}</p>
     <p>${image.downloads}</p>
     <p>${image.likes}</p>
     <p>${image.comments}</p>
-<div class="gallery">"${hitsList}"
-    <a class="gallery-link" href="images/&${image.webformatURL}">
-    <img class="gallery-image" src="images/thumbs/&${image.orientat}" alt="${image.tags}" title="${image.name}"/></a>
-    <a class="gallery-link" href="images/&${image.largeImageURL}">
-    <img class="gallery-image" src="images/thumbs/&${image.orientat}" alt="" title="${image.tags}"/></a>
-</div>
-</li> `
-galleryContainer.innerHTML = markupHtml;
+    <a class="gallery-link" href="${image.webformatURL}">
+    <img class="gallery-image" src="${image.orientat}" alt="${image.tags}" title="${image.name}"/></a>
+    <a class="gallery-link" href="${image.largeImageURL}">
+    <img class="gallery-image" src="${image.orientat}" alt="" title="${image.tags}"/></a>
+    </li> 
+    </div> ` )
+      .join("");
+      
+galleryContainer.innerHTML = hitsList;
 refresh()
   };
 // initialSelector = null;
@@ -107,21 +89,21 @@ refresh()
 // }
 // export default SimpleLightbox;
  
-const forms = document.querySelector('.uzers-form-image'); //  функція прослуховує на значення введене Юзером
-forms.addEventListener('input', handlerInput );
-function handlerInput(event) {
-    event.preventDefault();
-if (!photQueryValue === safesearch) // Показати message: `Sorry, використати приклад якщо не знаходиться така назва в бібліотеці pixabay
-  {
-    iziToast.error({
-        title: 'Error',
-        message: `Sorry, there are no images matching your search query. Please try again!`
-    })
-  }};
+// const forms = document.querySelector('.uzers-form-image'); //  функція прослуховує на значення введене Юзером
+// forms.addEventListener('input', handlerInput );
+// function handlerInput(event) {
+//     event.preventDefault();
+// if (!photQueryValue === safesearch) // Показати message: `Sorry, використати приклад якщо не знаходиться така назва в бібліотеці pixabay
+//   {
+//     iziToast.error({
+//         title: 'Error',
+//         message: `Sorry, there are no images matching your search query. Please try again!`
+//     })
+//   }};
     
 //  export {handlerInput};
 
- var lightbox = new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: 'alt'  });
+ var lightbox = new SimpleLightbox('.gallery a', { captionDelay: 200, captionsData: 'alt'  });
 
 // проста функція виклика повідомлення про помилку без перевірки
 //  function fechGallery(error) {

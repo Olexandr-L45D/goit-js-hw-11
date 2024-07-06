@@ -1,17 +1,23 @@
 
 import {getImage} from "./js/pixabay-api"
-getImage().then((data) => console.log(data))
-
-import {newUrl} from "./js/render-functions"
-newUrl().then((dat) => console.log(dat))
 
 import {fechPhoto} from "./js/render-functions"
-fechPhoto().then((photo) => console.log(photo))
 
 import {handlerSearch} from "./js/render-functions"
-handlerSearch().then((photos) => console.log(photos))
 
-// import {creatMarGallery} from "./js/render-functions"
-// creatMarGallery().then((dat) => console.log(dat))
+const refsOutput = {
+    formS: document.querySelector('.uzers-form-image'),
+     imGgallery: document.querySelector('.gallery')
+    
+}
 
+//formSearchImage.addEventListener('submit', handlerSearch);
+// refsOutput.formS.addEventListener('submit', handlerSearch);
 
+refsOutput.formS.addEventListener('submit', handlerSubmit);
+
+function handlerSubmit(event) {
+    event.preventDefault();
+    userRequest = event.target.searchQuery.value.trim()
+    getImage(userRequest).then(data => console.log(data));
+}
