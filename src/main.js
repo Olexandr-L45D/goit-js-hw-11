@@ -4,8 +4,8 @@ import {getImage} from "./js/pixabay-api"
 import {fechPhoto} from "./js/render-functions"
 fechPhoto().then(data => console.log(data));
 
-import {handlerSearch} from "./js/render-functions"
-handlerSearch().then(data => console.log(data));
+// import {handlerSearch} from "./js/render-functions"
+// handlerSearch().then(data => console.log(data));
 
 
 import {creatMarGallery} from "./js/render-functions"
