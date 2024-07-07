@@ -9,9 +9,23 @@ import "izitoast/dist/css/iziToast.min.css";
 const hits = {
     q: "", image_type: "photo" , orientation: "horizontal", safesearch: true, name: ""
    } 
-   const API_KEY = "44760113-b733d2f51a4c6409aa3483a05";
+   const API_KEYs = "44760113-b733d2f51a4c6409aa3483a05";
+
+   
+const parameters = {
+  webformatURL: "",        
+  largeImageURL: "",
+  tags : "alt",
+  views: 1,
+  downloads: 1,
+  likes: 1,
+  comments: 1,
+  user_id: 1,
+  user: "",
+};
+
 function fechPhoto(hits) {
-    return fetch(`https://pixabay.com/api/?key=${API_KEY}&${hits.q}`).then(response => { 
+    return fetch(`https://pixabay.com/api/?key=${API_KEYs}`, parameters ).then(response => { 
         console.log(response); 
         if (!response.ok) {
           throw new Error(response.status); 
@@ -20,44 +34,34 @@ function fechPhoto(hits) {
       }
       );
 }
-//fechPhoto(q).then(console.log)
-export {fechPhoto};
-//  initialSelector = null;
-//  this.initialSelector = elements;
 
-const formSearchImage = document.querySelector('.uzers-form-image');
-// formSearchImage.addEventListener('submit', handlerSearch);
+export {fechPhoto};
+
+
+const formSearchImage = document.querySelector(".uzers-form-image");
+formSearchImage.addEventListener('submit', handlerSearch);
 
 function handlerSearch(event) {
-      //  event.preventDefault();
-       const form = event.currentTarget; // посилання на елемент форми
-       const photQueryValue = form.elements.query.value.toLowerCase(); //значення яке написав користувач
+ // event.preventDefault();
+       const form = event.currentTarget.elements; // посилання на елемент форми
+       const photQueryValue = form.elements.searchQuery.value.toLowerCase().trim(); //значення яке написав користувач
 
        fechPhoto(photQueryValue) // робимо запит на сервер та отримуємо відповідь
        .then(creatMarGallery)   // запускаємо функцію яка відмалюовує карточки
-       .catch(handlerInput)  // первіряємо на помилки та видаємо повідомлення якщо такого не існує (404) Показати message: `Sorry
+       .catch(fechGallery) 
+       //.catch(handlerInput)  // первіряємо на помилки та видаємо повідомлення якщо такого не існує (404) Показати message: `Sorry
        .finally(() => form.reset()); //очистка данних форми після закінчення промісу(очистка тексту в інпуті)
-}
+};
 
 export {handlerSearch};
 
-const parameters = {
-    webformatURL: "",        
-    largeImageURL: "",
-    tags : "alt",
-    views: 1,
-    downloads: 1,
-    likes: 1,
-    comments: 1,
-        user_id: 1,
-        user: "",
-};
-//function creatMarGallery(parameters, hits ) 
-const galleryContainer = document.querySelector('.gallery');
-   function creatMarGallery({views, downloads, likes, comments, webformatURL, tags, largeImageURL, hits}) 
+const galleryContainer = document.querySelector('.gallery'); // створює розмітку для галереї
+galleryContainer.addEventListener('submit', creatMarGallery);
+   //function creatMarGallery({views, downloads, likes, comments, webformatURL, tags, largeImageURL, hits}) 
+   function creatMarGallery(parameters, hits ) 
   {
-    const hitsList = hits
-    .map(({image}) =>  
+    const hitsList = document.parameters;
+    hitsList.map(({image}) =>  
       ` <div class="gallery">"${hitsList}"
     <li class="gallery-item">
     <p>${image.views}</p>
@@ -70,12 +74,23 @@ const galleryContainer = document.querySelector('.gallery');
     <img class="gallery-image" src="${image.orientat}" alt="" title="${image.tags}"/></a>
     </li> 
     </div> ` )
-      .join("");
-      
-galleryContainer.innerHTML = hitsList;
-refresh()
+      .join("").refresh()
+      galleryContainer.innerHTML("afterbegin", creatMarGallery(hitsList));
+     
   };
-// initialSelector = null;
+ 
+  export {creatMarGallery}
+
+// проста функція виклика повідомлення про помилку без перевірки
+
+ function fechGallery(error) {
+  iziToast.error({title: 'Error', 
+    message: `Sorry, there are no images matching your search query. Please try again!`})
+ }
+
+  var lightbox = new SimpleLightbox('.gallery a', { captionDelay: 200, captionsData: 'alt'  });
+
+// initialSelector = null; // закоментований метод нижче refresh() з бібліотеки
 // this.initialSelector = elements;
 // refresh() {
 //   if (!this.initialSelector) {
@@ -103,15 +118,16 @@ refresh()
     
 //  export {handlerInput};
 
- var lightbox = new SimpleLightbox('.gallery a', { captionDelay: 200, captionsData: 'alt'  });
-
-// проста функція виклика повідомлення про помилку без перевірки
-//  function fechGallery(error) {
-//   iziToast.error({title: 'Error', 
-//     message: `Sorry, there are no images matching your search query. Please try again!`})
-//  }
 
 
+// підключити ще бібліотеку для завантаження спінера(нижче взяв з репозиторію)
+// const main = document.getElementById('main');
+// // Create Spinners 
+// LOADERS.forEach((loader, i) => {    
+//     // Append Loader
+//     main.appendChild(createLoader(i));
+    
+// })
 
 
 
