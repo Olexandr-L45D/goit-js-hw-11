@@ -1,25 +1,11 @@
 
-//Бібліотека містить метод [refresh()](<https://github.com/andreknieriem/simplelightbox#public-methods>), який обов'язково потрібно викликати щоразу після додавання нових елементів до галереї.
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 var lightbox = new SimpleLightbox('.gallery a', { captionDelay: 200, captionsData: 'alt'  });
 
-// function handlerSearch(event) {
-//  // event.preventDefault();
-//        const form = event.currentTarget.elements; // посилання на елемент форми
-//        const photQueryValue = form.elements.searchQuery.value.toLowerCase().trim(); //значення яке написав користувач
-
-//        fechPhoto(photQueryValue) // робимо запит на сервер та отримуємо відповідь
-//        .then(creatMarGallery)   // запускаємо функцію яка відмалюовує карточки
-//        .catch(fechGallery) 
-//        //.catch(handlerInput)  // первіряємо на помилки та видаємо повідомлення якщо такого не існує (404) Показати message: `Sorry
-//        .finally(() => form.reset()); //очистка данних форми після закінчення промісу(очистка тексту в інпуті)
-// };
-// export {handlerSearch};
-
-const galleryContainer = document.querySelector('.gallery'); // створює розмітку для галереї
+const galleryContainer = document.querySelector('.gallery'); // function створює розмітку для галереї
 galleryContainer.addEventListener('submit', renderGalleryMarkap);
    
    export function renderGalleryMarkap(images) {
@@ -41,8 +27,7 @@ galleryContainer.addEventListener('submit', renderGalleryMarkap);
       galleryContainer.insertAdjacentHTML("beforeend", markup);
       lightbox.refresh()
   };
- 
-// проста функція виклика повідомлення про помилку без перевірки
+// проста функція виклика повідомлення про помилку без перевірки and iziToast
  function fechGallery(error) {
   iziToast.error({title: 'Error', 
     message: `Sorry, there are no images matching your search query. Please try again!`})
@@ -50,6 +35,10 @@ galleryContainer.addEventListener('submit', renderGalleryMarkap);
  export {fechGallery};
 
 
+
+
+
+ 
 
 // підключити ще бібліотеку для завантаження спінера(нижче взяв з репозиторію) СПІНЕР???
 // const main = document.getElementById('main');
