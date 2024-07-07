@@ -1,11 +1,9 @@
 
 
 import {getImage} from "./js/pixabay-api"
-// import {fechPhoto} from "./js/render-functions"
-//  import {handlerSearch} from "./js/render-functions"
- import {renderGalleryMarkap} from "./js/render-functions"
+import {fechGallery} from "./js/render-functions"
+import {renderGalleryMarkap} from "./js/render-functions"
 
-// fechPhoto().then(data => console.log(data));
 // renderGalleryMarkap().then(data => console.log(data));
 
 
@@ -14,9 +12,14 @@ formSearchImage.addEventListener('submit', onFormSubmit);
 
 function onFormSubmit(event) {
     event.preventDefault();
-    getImage().then(data => {
+    const form = event.currentTarget; // посилання на елемент форми
+    const photQueryValue = form.elements.searchQuery.value.toLowerCase().trim(); //значення яке написав користувач
+
+    getImage(photQueryValue).then(data => {
         console.log(data);
-        renderGalleryMarkap(data.hits)
+        renderGalleryMarkap(data.hits) //додаю перевірку на введене значення
+        .catch(fechGallery)  // первіряємо на помилки та видаємо повідомлення якщо такого не існує (404) Показати message: `Sorry
+        .finally(() => form.reset()); //очистка данних форми після закінчення промісу(очистка тексту в інпуті)
     })
 }
 

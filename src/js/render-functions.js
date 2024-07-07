@@ -5,41 +5,6 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 var lightbox = new SimpleLightbox('.gallery a', { captionDelay: 200, captionsData: 'alt'  });
-// const hits = {
-//     q: "", image_type: "photo" , orientation: "horizontal", safesearch: true, name: ""
-//    } 
-//    const API_KEYs = "44760113-b733d2f51a4c6409aa3483a05";
-
-   
-// const parameters = {
-//   webformatURL: "",        
-//   largeImageURL: "",
-//   tags : "alt",
-//   views: 1,
-//   downloads: 1,
-//   likes: 1,
-//   comments: 1,
-//   user_id: 1,
-//   user: "",
-// };
-
-// function fechPhoto(hits) {
-//     return fetch(`https://pixabay.com/api/?key=${API_KEYs}`, parameters ).then(response => { 
-//         console.log(response); 
-//         if (!response.ok) {
-//           throw new Error(response.status); 
-//         }
-//         return response.json(); // виклкикаеттся на обект, повертае Promes
-//       }
-//       );
-// }
-
-// export {fechPhoto};
-
-
-// const formSearchImage = document.querySelector(".uzers-form-image");
-// formSearchImage.addEventListener('submit', handlerSearch);
-//поки що коментую (це була основна функція)
 
 // function handlerSearch(event) {
 //  // event.preventDefault();
@@ -56,7 +21,7 @@ var lightbox = new SimpleLightbox('.gallery a', { captionDelay: 200, captionsDat
 
 const galleryContainer = document.querySelector('.gallery'); // створює розмітку для галереї
 galleryContainer.addEventListener('submit', renderGalleryMarkap);
-   //function renderGalleryMarkap({views, downloads, likes, comments, webformatURL, tags, largeImageURL, hits}) 
+   
    export function renderGalleryMarkap(images) {
     const markup = images
     .map((image) =>  
@@ -77,47 +42,16 @@ galleryContainer.addEventListener('submit', renderGalleryMarkap);
       lightbox.refresh()
   };
  
-
 // проста функція виклика повідомлення про помилку без перевірки
-
-//  function fechGallery(error) {
-//   iziToast.error({title: 'Error', 
-//     message: `Sorry, there are no images matching your search query. Please try again!`})
-//  }
-
-
-
-// initialSelector = null; // закоментований метод нижче refresh() з бібліотеки
-// this.initialSelector = elements;
-// refresh() {
-//   if (!this.initialSelector) {
-//       throw 'refreshing only works when you initialize using a selector!';
-//   }
-//   let options = this.options,
-//       selector = this.initialSelector;
-//   this.destroy();
-//   this.constructor(selector, options);
-//   return this;
-// }
-// export default SimpleLightbox;
- 
-// const forms = document.querySelector('.uzers-form-image'); //  функція прослуховує на значення введене Юзером
-// forms.addEventListener('input', handlerInput );
-// function handlerInput(event) {
-//     event.preventDefault();
-// if (!photQueryValue === safesearch) // Показати message: `Sorry, використати приклад якщо не знаходиться така назва в бібліотеці pixabay
-//   {
-//     iziToast.error({
-//         title: 'Error',
-//         message: `Sorry, there are no images matching your search query. Please try again!`
-//     })
-//   }};
-    
-//  export {handlerInput};
+ function fechGallery(error) {
+  iziToast.error({title: 'Error', 
+    message: `Sorry, there are no images matching your search query. Please try again!`})
+ }
+ export {fechGallery};
 
 
 
-// підключити ще бібліотеку для завантаження спінера(нижче взяв з репозиторію)
+// підключити ще бібліотеку для завантаження спінера(нижче взяв з репозиторію) СПІНЕР???
 // const main = document.getElementById('main');
 // // Create Spinners 
 // LOADERS.forEach((loader, i) => {    
