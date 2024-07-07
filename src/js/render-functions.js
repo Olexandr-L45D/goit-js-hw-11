@@ -1,94 +1,91 @@
 
-//У розмітці необхідно буде обгорнути кожну картку зображення в посилання, як зазначено в документації в секції «Markup».
 //Бібліотека містить метод [refresh()](<https://github.com/andreknieriem/simplelightbox#public-methods>), який обов'язково потрібно викликати щоразу після додавання нових елементів до галереї.
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
-
-const hits = {
-    q: "", image_type: "photo" , orientation: "horizontal", safesearch: true, name: ""
-   } 
-   const API_KEYs = "44760113-b733d2f51a4c6409aa3483a05";
+var lightbox = new SimpleLightbox('.gallery a', { captionDelay: 200, captionsData: 'alt'  });
+// const hits = {
+//     q: "", image_type: "photo" , orientation: "horizontal", safesearch: true, name: ""
+//    } 
+//    const API_KEYs = "44760113-b733d2f51a4c6409aa3483a05";
 
    
-const parameters = {
-  webformatURL: "",        
-  largeImageURL: "",
-  tags : "alt",
-  views: 1,
-  downloads: 1,
-  likes: 1,
-  comments: 1,
-  user_id: 1,
-  user: "",
-};
+// const parameters = {
+//   webformatURL: "",        
+//   largeImageURL: "",
+//   tags : "alt",
+//   views: 1,
+//   downloads: 1,
+//   likes: 1,
+//   comments: 1,
+//   user_id: 1,
+//   user: "",
+// };
 
-function fechPhoto(hits) {
-    return fetch(`https://pixabay.com/api/?key=${API_KEYs}`, parameters ).then(response => { 
-        console.log(response); 
-        if (!response.ok) {
-          throw new Error(response.status); 
-        }
-        return response.json(); // виклкикаеттся на обект, повертае Promes
-      }
-      );
-}
+// function fechPhoto(hits) {
+//     return fetch(`https://pixabay.com/api/?key=${API_KEYs}`, parameters ).then(response => { 
+//         console.log(response); 
+//         if (!response.ok) {
+//           throw new Error(response.status); 
+//         }
+//         return response.json(); // виклкикаеттся на обект, повертае Promes
+//       }
+//       );
+// }
 
-export {fechPhoto};
+// export {fechPhoto};
 
 
-const formSearchImage = document.querySelector(".uzers-form-image");
-formSearchImage.addEventListener('submit', handlerSearch);
+// const formSearchImage = document.querySelector(".uzers-form-image");
+// formSearchImage.addEventListener('submit', handlerSearch);
+//поки що коментую (це була основна функція)
 
-function handlerSearch(event) {
- // event.preventDefault();
-       const form = event.currentTarget.elements; // посилання на елемент форми
-       const photQueryValue = form.elements.searchQuery.value.toLowerCase().trim(); //значення яке написав користувач
+// function handlerSearch(event) {
+//  // event.preventDefault();
+//        const form = event.currentTarget.elements; // посилання на елемент форми
+//        const photQueryValue = form.elements.searchQuery.value.toLowerCase().trim(); //значення яке написав користувач
 
-       fechPhoto(photQueryValue) // робимо запит на сервер та отримуємо відповідь
-       .then(creatMarGallery)   // запускаємо функцію яка відмалюовує карточки
-       .catch(fechGallery) 
-       //.catch(handlerInput)  // первіряємо на помилки та видаємо повідомлення якщо такого не існує (404) Показати message: `Sorry
-       .finally(() => form.reset()); //очистка данних форми після закінчення промісу(очистка тексту в інпуті)
-};
-
-export {handlerSearch};
+//        fechPhoto(photQueryValue) // робимо запит на сервер та отримуємо відповідь
+//        .then(creatMarGallery)   // запускаємо функцію яка відмалюовує карточки
+//        .catch(fechGallery) 
+//        //.catch(handlerInput)  // первіряємо на помилки та видаємо повідомлення якщо такого не існує (404) Показати message: `Sorry
+//        .finally(() => form.reset()); //очистка данних форми після закінчення промісу(очистка тексту в інпуті)
+// };
+// export {handlerSearch};
 
 const galleryContainer = document.querySelector('.gallery'); // створює розмітку для галереї
-galleryContainer.addEventListener('submit', creatMarGallery);
-   //function creatMarGallery({views, downloads, likes, comments, webformatURL, tags, largeImageURL, hits}) 
-   function creatMarGallery(parameters, hits ) 
-  {
-    const hitsList = document.parameters;
-    hitsList.map(({image}) =>  
-      ` <div class="gallery">"${hitsList}"
+galleryContainer.addEventListener('submit', renderGalleryMarkap);
+   //function renderGalleryMarkap({views, downloads, likes, comments, webformatURL, tags, largeImageURL, hits}) 
+   export function renderGalleryMarkap(images) {
+    const markup = images
+    .map((image) =>  
+      ` 
     <li class="gallery-item">
-    <p>${image.views}</p>
-    <p>${image.downloads}</p>
-    <p>${image.likes}</p>
-    <p>${image.comments}</p>
-    <a class="gallery-link" href="${image.webformatURL}">
-    <img class="gallery-image" src="${image.orientat}" alt="${image.tags}" title="${image.name}"/></a>
     <a class="gallery-link" href="${image.largeImageURL}">
-    <img class="gallery-image" src="${image.orientat}" alt="" title="${image.tags}"/></a>
+    <img class="gallery-image" src="${image.webformatURL}" alt="${image.tags}" title="${image.name}"/></a>
+    <div class="gallery-paragraf">
+    <p class="gallery-commant">likes ${image.likes}</p>
+    <p class="gallery-commant">views ${image.views}</p>
+    <p class="gallery-commant">comments ${image.comments}</p>
+    <p class="gallery-commant">downloads ${image.downloads}</p>
+    </div>
     </li> 
-    </div> ` )
-      .join("").refresh()
-      galleryContainer.innerHTML("afterbegin", creatMarGallery(hitsList));
-     
+     ` )
+      .join("")
+      galleryContainer.insertAdjacentHTML("beforeend", markup);
+      lightbox.refresh()
   };
  
-  export {creatMarGallery}
 
 // проста функція виклика повідомлення про помилку без перевірки
 
- function fechGallery(error) {
-  iziToast.error({title: 'Error', 
-    message: `Sorry, there are no images matching your search query. Please try again!`})
- }
+//  function fechGallery(error) {
+//   iziToast.error({title: 'Error', 
+//     message: `Sorry, there are no images matching your search query. Please try again!`})
+//  }
 
-  var lightbox = new SimpleLightbox('.gallery a', { captionDelay: 200, captionsData: 'alt'  });
+
 
 // initialSelector = null; // закоментований метод нижче refresh() з бібліотеки
 // this.initialSelector = elements;

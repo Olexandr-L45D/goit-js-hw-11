@@ -161,14 +161,23 @@ border-color: black;
 margin: 10px;
 gap: 24px;
 counter-increment: my-counter;
+flex-direction: column;
 }
-.gallery-item img {
+.gallery-paragraf {
+  display: flex;
+  flex-direction: row;
+}
+.gallery-image {
 width: 360px;
 height: 200px;
 border-radius: 5px;
 margin: 5px;
 }
-
+.gallery-commant {
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
+}
 .gallery-item p {
 font-size: 1rem;
 margin: 0px;
