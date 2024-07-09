@@ -3,6 +3,7 @@ import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
+
 iziToast.settings({
   timeout: 2500,
   resetOnHover: true,
@@ -14,6 +15,12 @@ iziToast.settings({
   backgroundColor: 'rgba(255, 182, 66, 0.8)',
 });
 var lightbox = new SimpleLightbox('.gallery a', { captionDelay: 200, captionsData: 'alt'  });
+
+export const refs = {
+  formSearchImage: document.querySelector(".uzers-form-image"),
+  gallery: document.querySelector('.gallery'),
+  loader: document.querySelector('.loader'),
+};
 
 const galleryContainer = document.querySelector('.gallery'); // function створює розмітку для галереї
 galleryContainer.addEventListener('submit', renderGalleryMarkap);
@@ -41,14 +48,11 @@ galleryContainer.addEventListener('submit', renderGalleryMarkap);
       
   };
 
-  export const refs = {
-    gallery: document.querySelector('.gallery'),
-    loader: document.querySelector('.loader'),
-  };
 // функція виклика повідомлення про помилку and iziToast
 
 export function fechGallery(error) {
-  switch (error) {
+  switch (error)
+    {
     case 'outdata':
       iziToast.warning({
         title: 'Error',
