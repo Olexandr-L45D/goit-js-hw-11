@@ -4,17 +4,17 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <meta name="title" content="CSS loaders and spinner"> -->
-    <title>Document</title>
     
+    
+    <title>goit-js-hw-11</title>
     <script type="module" crossorigin src="/goit-js-hw-11/commonHelpers.js"></script>
     <link rel="modulepreload" crossorigin href="/goit-js-hw-11/assets/vendor-0fc460d7.js">
     <link rel="stylesheet" href="/goit-js-hw-11/assets/vendor-4b066c51.css">
-    <link rel="stylesheet" href="/goit-js-hw-11/assets/index-769b8248.css">
+    <link rel="stylesheet" href="/goit-js-hw-11/assets/index-bb18cc80.css">
   </head>
   <body>
- <div class="container">
-  
+
+ <header class="header">
   <div class="uzers-form-container"> 
     <!-- form для відображення Галереї при виборі юзером -->
       <form class="uzers-form-image"> 
@@ -24,12 +24,17 @@
       <button class="button-submit" type="submit" value="search">Search</button> 
        </form>
   </div>
- </div>
- <ul class="gallery"></ul> 
- 
- <!-- для відображення HTTP запитів -->
- <div class="loader"></div>
-    
+</header>
+<main>
+  
+    <div class="container">
+      <span class="loader"></span> <!-- для відображення спінера -->
+       <ul class="gallery"></ul> 
+    </div>
+  
+</main> 
+
+    <!-- <script type="module" src="./main.js"></script> -->
   </body>
 </html>
 
