@@ -9,8 +9,8 @@ function onFormSubmit(event) {
     event.preventDefault();
     const form = event.currentTarget; // посилання на елемент форми
     const photQueryValue = form.elements.searchQuery.value.toLowerCase().trim(); //значення яке написав користувач
-    const searchText = event.target.searchQuery.value;
-  if (!searchText) {
+    const searchText = event.target.searchQuery.value.trim();
+  if (searchText === "") {
     fechGallery('outdata');
     return;
   }
@@ -19,16 +19,15 @@ function onFormSubmit(event) {
    
     getImage(photQueryValue)
     .then(data => {
-        renderGalleryMarkap(data.hits)
-        
-    }).then(data => {
-        refs.loader.classList.remove('loader');
-        if (photQueryValue === 0) {
-            fechGallery('nodata');
-          return;
-        }}).catch(error => {
-            refs.loader.classList.remove('loader');
-            fechGallery(error.hits);
+      renderGalleryMarkap(data.hits)
+      refs.loader.classList.remove('loader');
+      if (data.totalHits === 0) {
+          fechGallery('nodata');  
+    }
+  }).catch(error => {
+    refs.loader.classList.remove('loader');
+    
+        fechGallery(error);
           })
     .finally(() => 
         form.reset()); //очистка тексту в інпуті
