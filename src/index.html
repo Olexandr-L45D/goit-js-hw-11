@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <meta name="title" content="CSS loaders and spinner"> -->
-    <title>Document</title>
+    <script type="module" src="./main.js"></script>
     <link rel="stylesheet" href="./css/styles.css" />
+    <title>goit-js-hw-11</title>
   </head>
   <body>
- <div class="container">
-  
+
+ <header class="header">
   <div class="uzers-form-container"> 
     <!-- form для відображення Галереї при виборі юзером -->
       <form class="uzers-form-image"> 
@@ -20,12 +20,17 @@
       <button class="button-submit" type="submit" value="search">Search</button> 
        </form>
   </div>
- </div>
- <ul class="gallery"></ul> 
- 
- <!-- для відображення HTTP запитів -->
- <div class="loader"></div>
-    <script type="module" src="./main.js"></script>
+</header>
+<main>
+  
+    <div class="container">
+      <span class="loader"></span> <!-- для відображення спінера -->
+       <ul class="gallery"></ul> 
+    </div>
+  
+</main> 
+
+    <!-- <script type="module" src="./main.js"></script> -->
   </body>
 </html>
 
